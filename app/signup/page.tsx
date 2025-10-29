@@ -1,0 +1,18 @@
+import Link from "next/link"
+import { SignupForm } from "@/components/signup-form"
+
+export default function SignupPage() {
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center px-4 py-8">
+      <div className="w-full max-w-md">
+        <Link href="/" className="flex items-center gap-2 mb-8 justify-center">
+          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <span className="text-primary-foreground font-bold text-lg">🌾</span>
+          </div>
+          <h1 className="text-2xl font-bold text-primary">Kisan Sathi</h1>
+        </Link>
+        <SignupForm />
+      </div>
+    </main>
+  )
+}
