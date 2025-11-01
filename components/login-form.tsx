@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { useAuth } from "@/components/auth-context"
 
 export function LoginForm() {
-  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +24,7 @@ export function LoginForm() {
     setIsLoading(true)
 
     try {
-      await login(email, password)
+      await login(phone, password)
       router.push("/dashboard")
     } catch (err) {
       setError("Login failed. Please check your credentials.")
@@ -39,12 +39,12 @@ export function LoginForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2 text-foreground">Email Address</label>
+          <label className="block text-sm font-medium mb-2 text-foreground">Phone Number</label>
           <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@email.com"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="e.g. +919876543210 or 9876543210"
             required
             className="w-full h-12 text-base"
           />

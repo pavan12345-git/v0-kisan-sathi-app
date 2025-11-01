@@ -49,6 +49,8 @@ export function SignupForm() {
     password: "",
     phone: "",
     district: "",
+    taluk: "",
+    village: "",
   })
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -66,10 +68,19 @@ export function SignupForm() {
     setIsLoading(true)
 
     try {
-      await signup(formData.email, formData.password, formData.name, formData.phone, formData.district)
-      router.push("/dashboard")
+      await signup(
+        formData.email,
+        formData.password,
+        formData.name,
+        formData.phone,
+        formData.district,
+        formData.taluk,
+        formData.village
+      )
+      router.push("/login")
     } catch (err) {
-      setError("Signup failed. Please try again.")
+      const msg = err instanceof Error ? err.message : "Signup failed. Please try again."
+      setError(msg)
     } finally {
       setIsLoading(false)
     }
@@ -113,7 +124,7 @@ export function SignupForm() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="10-digit phone number"
+            placeholder="e.g. +919876543210 or 9876543210"
             required
             className="w-full h-12 text-base"
           />
@@ -135,6 +146,32 @@ export function SignupForm() {
               </option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-foreground">Taluk</label>
+          <Input
+            type="text"
+            name="taluk"
+            value={formData.taluk}
+            onChange={handleChange}
+            placeholder="Your taluk"
+            required
+            className="w-full h-12 text-base"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-foreground">Village</label>
+          <Input
+            type="text"
+            name="village"
+            value={formData.village}
+            onChange={handleChange}
+            placeholder="Your village"
+            required
+            className="w-full h-12 text-base"
+          />
         </div>
 
         <div>
